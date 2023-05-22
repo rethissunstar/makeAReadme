@@ -5,6 +5,17 @@ const fs = require('fs');
 const axios = require('axios');
 const inquirer = require('inquirer');
 const { default: Choices } = require('inquirer/lib/objects/choices');
+var description = '';
+var title = '';
+var install = '';
+var usage = '';
+var license = '';
+var contribute = '';
+var test = '';
+var gitUser = '';
+
+
+
 
 // TODO: Create an array of questions for user input
 //this is not how I would do this with my understanding
@@ -63,17 +74,64 @@ inquirer
         }
     ])
     .then((response) => {
-     console.log(JSON.stringify(response));
-     return (response);
-})
-    .then((response) => {
-        console.log("this worked " + JSON.stringify(response.license[0]));
+        console.log(response);
         return (response);
+
     })
-    .then((response) => {
-        console.log('checking this too' + JSON.stringify(response.description));
+    .then((data) => {
+     
+      fs.writeFile('README.md', '# Title: ' + JSON.stringify(data.title), (err) =>
+        err ? console.error(err) : console.log ('readme created')
+      );
+      fs.appendFile('README.md', '\n ## Description: ' + '\n' +JSON.stringify(data.description) + '\n', (err) =>
+      err ? console.error(err) : console.log ('description added')
+    );
+    fs.appendFile('README.md', '\n ## installation: ' + '\n' +JSON.stringify(data.installation) + '\n', (err) =>
+      err ? console.error(err) : console.log ('install added')
+    );
+    fs.appendFile('README.md', '\n ## Usage: ' + '\n' +JSON.stringify(data.usage) + '\n', (err) =>
+      err ? console.error(err) : console.log ('usage added')
+    );
+    fs.appendFile('README.md', '\n ## License: ' + '\n' +JSON.stringify(data.license[0]) + '\n', (err) =>
+    err ? console.error(err) : console.log ('license added')
+  );
+  fs.appendFile('README.md', '\n ## Contributors: ' + '\n' +JSON.stringify(data.contribute) + '\n', (err) =>
+      err ? console.error(err) : console.log ('contributers added')
+    );
+    fs.appendFile('README.md', '\n ## test: ' + '\n' +JSON.stringify(data.test) + '\n', (err) =>
+      err ? console.error(err) : console.log ('test added')
+    );
+    fs.appendFile('README.md', '\n ## Github link: ' + '\nhttps://github.com/' +JSON.stringify(data.username) + '\n', (err) =>
+      err ? console.error(err) : console.log ('github link added')
+    );
     })
+
+    //CHECK YOUR GITHUB-HOW DID THIS WORK BEFORE?
+    //CHECK YOUR FUNCTION NOTATION.  THIS ARROW SHIT IS NOT OUR JAM
     
+    //(err) => {
+    //     if (err) return console.log('Error');
+        //  console.log('success');
+        // console.log(response);
+        // console.log(JSON.stringify(response));
+        // title = JSON.stringify(response.title);
+        
+  
+     
+
+//     .then((data) => {
+//         fs.appendFile('README.md', ('# Description: ' ), (err) =>
+// err ? console.error(err) : console.log('Success!'));
+
+//         return (data);
+//     })
+//     .then((response) => {
+//         fs.appendFile('README.md', (JSON.stringify(response.description) )), (err) =>
+// err ? console.error(err) : console.log('Success!');
+// return(response);
+//     })
+    
+// I will have to assign all the responses to variable because the quotes come with it and that is not what I want.
 
 // TODO: Create a function to write README file
 //function writeToFile(fileName, data) {}
