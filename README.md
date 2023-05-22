@@ -15,7 +15,9 @@
 "this is the test"
 
  ## Github link: 
-https://github.com/"rethissunstar/makeAReadme"
+https://github.com/rethissunstar/makeAReadme
+video can be found at: https://youtu.be/lLKBcywri38
+
 
  ## Contributors: 
 "no one"
